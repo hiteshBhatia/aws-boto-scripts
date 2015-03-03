@@ -3,7 +3,6 @@ import boto.ec2
 regions = boto.ec2.regions()
 count = 0
 
-#ec2conn = boto.ec2.connect_to_region('ap-southeast-1')
 for region in regions:
     try:
         ec2conn = boto.ec2.connect_to_region(region.name)
