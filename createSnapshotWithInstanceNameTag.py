@@ -12,7 +12,7 @@ import sys
 import datetime
 from boto import ec2
 
-connection=ec2.connect_to_region('us-east-1',aws_access_key_id='AKIAIVYTBJOM46TLPWLQ',aws_secret_access_key='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')
+connection=ec2.connect_to_region('us-east-1',aws_access_key_id='',aws_secret_access_key='')
 
 try:
 
