@@ -1,6 +1,3 @@
-tagset =  {u'Project': u'Bravia', u'Name': u'Bravia-Web-PRD', u'Purpose': u'BraviaStaging'}
+import boto.ec2
 
-for key in tagset.keys():
-    print key + " : " + tagset[key]
-
-
+print boto.Version
