@@ -38,9 +38,11 @@
 <ul>
 <li> * createImagesBasedOnTags.py - It creates an image (ami) of all the instances that have tag "<em>AutomaticBackup</em>" with value "<em>True</em>" {"AutomaticBackup":"True"}. One can also specify another tag "<em>Frequency</em>", which counts the number of ami required for an instance. Frequency tag is helpful where you need to create more than one backup in a day, for that you will also need to run this script more than once according to the frequency that you need.</li>
 </ul>
-
+<ul>
+  <li>
 <p>It also tags the resultant ami with following tags {"instance_id":"" (helps in searching).</p>
-
+</li>
+</ul>
 <ul>
 <li>
 <strong>deleteBackupsBasedOnTags-backupManager.py</strong> - It deletes the older images if the instances which have tag {"AutomaticBackup":"True"}. By default it deletes images older than 30 days. This number can be customized by by another tag "<em>RetentionCount</em>" {"RetentionCount":45}.</li>
