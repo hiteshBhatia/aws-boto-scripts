@@ -36,12 +36,10 @@
 <p><strong>backup-manager</strong> a folder in this repo, contains two scripts that are used for managing backups for an AWS account. </p>
 
 <ul>
-<li> * createImagesBasedOnTags.py - It creates an image (ami) of all the instances that have tag "<em>AutomaticBackup</em>" with value "<em>True</em>" {"AutomaticBackup":"True"}. One can also specify another tag "<em>Frequency</em>", which counts the number of ami required for an instance. Frequency tag is helpful where you need to create more than one backup in a day, for that you will also need to run this script more than once according to the frequency that you need.</li>
+<li><strong>createImagesBasedOnTags.py </strong> - It creates an image (ami) of all the instances that have tag "<em>AutomaticBackup</em>" with value "<em>True</em>" {"AutomaticBackup":"True"}. One can also specify another tag "<em>Frequency</em>", which counts the number of ami required for an instance. Frequency tag is helpful where you need to create more than one backup in a day, for that you will also need to run this script more than once according to the frequency that you need.</li>
 </ul>
 <ul>
-  <li>
-<p>It also tags the resultant ami with following tags {"instance_id":"" (helps in searching).</p>
-</li>
+  <li> It also tags the resultant ami with following tags {"instance_id":"" (helps in searching).</li>
 </ul>
 <ul>
 <li>
