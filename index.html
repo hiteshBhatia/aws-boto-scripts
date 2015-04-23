@@ -33,7 +33,7 @@
 
 <p>This repo contains scripts written in Pythin using boto that are useful in managing an AWS account. Feel free to pitch in.</p>
 
-<p><strong>backup-manager</strong> a folder in this repo, contains two scripts that are used for managing backups for an AWS account. </p>
+<p><strong>backup-manager</strong> a folder in this repo, contains two scripts (createImagesBasedOnTags.py and deleteBackupsBasedOnTags) that are used for managing backups for an AWS account. </p>
 
 <ul>
 <li><p><strong>createImagesBasedOnTags.py</strong> - It creates an image (ami) of all the instances that have tag "<em>AutomaticBackup</em>" with value "<em>True</em>" <code>{"AutomaticBackup":"True"}</code>. One can also specify another tag "<em>Frequency</em>", which counts the number of ami required for an instance. </p></li>
