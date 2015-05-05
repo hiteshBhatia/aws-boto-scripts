@@ -3,7 +3,7 @@ README
 @Vikash
 
 
-This script will find the Security Group having (0-65535) port open as well as port 22
+This script will scan all the SecurityGroup of running/stopped instances with Port 22 open
 
 '''
 
@@ -18,6 +18,7 @@ sg=connection.get_all_security_groups()
 
 listOfInstances=""
 messages="Following Instances have port 22 open"
+
 def getTag(instanceId):
 
 	reservations=connection.get_all_instances(filters={'instance_id':instanceId})
@@ -32,24 +33,12 @@ try:
 
 		
 		   global instanceId;
-	
-		   if (rule.from_port=='0' and rule.to_port == '65535')  and '0.0.0.0/0' in str(rule.grants):
-			   for instanceid in securityGroup.instances():
-			   	 instanceId=str(instanceid)		       		       		       
-				 print "All ports open:"
-				 print " SecurityGroupName: %s --> Instance Name: %s" %(securityGroup.name,  getTag(instanceId.split(':')[1]))
-				 print "--------------------------------------------------------------------"
- 	          
-      		   if (rule.from_port=='22' and rule.to_port == '22')  and '0.0.0.0/0' in str(rule.grants):
+      		   
+                   if (rule.from_port=='22' and rule.to_port == '22')  and '0.0.0.0/0' in str(rule.grants):
                            for instanceid in securityGroup.instances():
 		
-                                 instanceId=str(instanceid)
-				 listOfInstances += "Instance Name : " + getTag(instanceId.split(':')[1]) + "\t State:" + instanceid.state +"\n"
-                                 print "Port 22 open for all IP:"
-             			 print " SecurityGroupName: %s --> Instance Name: %s" %(securityGroup.name,  getTag(instanceId.split(':')[1]))
-				 print " Instance State : %s " %(instanceid.state)
-				 print  "-------------------------------------------------------------------"
-	
+	                         listOfInstances += "Instance Name : " + getTag(instanceId.split(':')[1]) + "\t State:" + instanceid.state + "\t SecurityGroup:" + securityGroup.name + "\n"
+                                                              
 				 connSNS.publish(topic='sns-arn-endpoint',message = messages + "\n" +  listOfInstances, subject='ProjectName : Server List with Port 22 Open')
 	
 except :
