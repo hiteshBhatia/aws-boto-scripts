@@ -44,7 +44,7 @@ for reservation in reservations:
         for ami in amiList:
             if parse(ami.creationDate).date() < retentionDate:
                 print "Deleting AMI ID " + str(ami.id) + " Created On " + str(ami.creationDate)
-                connection.deregister_image(ami.id)
+                connection.deregister_image(ami.id, delete_snapshot = True)
             else:
                 print str(ami.id) + "has a creation date " + str(ami.creationDate) + " more recent than Deletion Date " + str(retentionDate)
                 break;
