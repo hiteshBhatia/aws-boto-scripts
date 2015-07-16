@@ -44,7 +44,16 @@ for reservation in reservations:
         for ami in amiList:
             if parse(ami.creationDate).date() < retentionDate:
                 print "Deleting AMI ID " + str(ami.id) + " Created On " + str(ami.creationDate)
-                connection.deregister_image(ami.id, delete_snapshot = True)
+                blockDeviceMapping = ami.block_device_mapping
+                connection.deregister_image(ami.id)
+                for snapshot in blockDeviceMapping:
+                        snapshotID=blockDeviceMapping[snapshot].snapshot_id
+                        if snapshotID is not None:
+                                print "-------------------------------------------------------------------------------------"
+                                print "Deleting Snapshot " + str(snapshotID)
+                                connection.delete_snapshot(snapshotID)
+                                print "-------------------------------------------------------------------------------------"
+		#connection.deregister_image(ami.id, delete_snapshot = True)
             else:
                 print str(ami.id) + "has a creation date " + str(ami.creationDate) + " more recent than Deletion Date " + str(retentionDate)
                 break;
